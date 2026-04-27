@@ -1,0 +1,39 @@
+# DonutCore Configuration
+# Author: Andreilarazboi
+
+prefix: '&8[&6DonutCrate&8] &r'
+actionbar-enabled: true
+crate-key-payment-enabled: true
+
+messages:
+  no-permission: '&cYou do not have permission to do this.'
+  player-only: '&cThis command can only be used by players.'
+  crate-not-found: '&cCrate &e{crate} &cdoes not exist.'
+  player-not-found: '&cPlayer &e{player} &cwas not found.'
+  no-keys: '&cYou do not have any keys for &e{crate}&c!'
+  key-given: '&aGiven &e{amount} &akey(s) for &e{crate} &ato &e{player}&a.'
+  key-received: '&aYou received &e{amount} &akey(s) for &e{crate}&a.'
+  key-taken: '&aRemoved &e{amount} &akey(s) for &e{crate} &afrom &e{player}&a.'
+  key-reset: '&aReset keys for &e{player} &aon crate &e{crate}&a.'
+  key-reset-all: '&aReset all keys for crate &e{crate}&a.'
+  key-paid: '&aYou paid &e{amount} &akey(s) for &e{crate} &ato &e{player}&a.'
+  key-paid-received: '&e{player} &apaid you &e{amount} &akey(s) for &e{crate}&a.'
+  insufficient-keys-pay: '&cYou do not have enough keys to pay!'
+  crate-created: '&aCrate &e{crate} &acreated! Use &e/donutcrate moveblock {crate} &ato place it.'
+  crate-deleted: '&aCrate &e{crate} &adeleted.'
+  crate-already-exists: '&cA crate with name &e{crate} &calready exists.'
+  item-added: '&aItem &e{item} &aadded to &e{crate}&a.'
+  item-removed: '&aItem &e{item} &aremoved from &e{crate}&a.'
+  item-not-found: '&cItem &e{item} &cwas not found in &e{crate}&c.'
+  hand-empty: '&cYou must be holding an item!'
+  moveblock-mode: '&aRight-click a block to place the &e{crate} &acrate there.'
+  crate-moved: '&aCrate &e{crate} &amoved to your location.'
+  reward-given: '&aYou received &e{reward} &afrom the &e{crate} &acrate!'
+  reward-broadcast: '&e{player} &awon &e{reward} &afrom the &6{crate} &acrate!'
+  config-reloaded: '&aConfiguration reloaded successfully.'
+  stats-header: '&8&m---------&r &6Your Crate Stats &8&m---------'
+  stats-crate-line: '  &7{crate}: &e{opens} &7opens - Last reward: &e{last_reward}'
+  stats-footer: '&8&m------------------------------------'
+  stats-empty: '&7You have not opened any crates yet.'
+  help-header: '&8&m---------&r &6DonutCrate Help &8&m---------'
+  help-footer: '&8&m---------------------------------------'

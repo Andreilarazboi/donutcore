@@ -1,0 +1,34 @@
+name: DonutCore
+version: '${project.version}'
+main: ro.andreilarazboi.donutcore.DonutCore
+api-version: '1.21'
+authors: [Andreilarazboi]
+description: DonutCore - Modular plugin with crates, TPA, and more.
+website: ''
+
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  donutcrate:
+    description: Main crate command
+    usage: /donutcrate <subcommand>
+    aliases: [dcrate, crate]
+    permission: donutcore.crate.use
+
+permissions:
+  donutcore.crate.use:
+    description: Open crates
+    default: true
+  donutcore.crate.admin:
+    description: Manage crates
+    default: op
+  donutcore.crate.key.give:
+    description: Give crate keys to players
+    default: op
+  donutcore.crate.key.pay:
+    description: Pay crate keys to other players
+    default: true
+  donutcore.crate.stats:
+    description: View crate stats
+    default: true
