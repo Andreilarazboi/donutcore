@@ -1,147 +1,101 @@
+
 package ro.andreilarazboi.donutcore.crates.gui;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
+import java.util.ArrayList;
+import ro.andreilarazboi.donutcore.crates.DonutCrates;
+import ro.andreilarazboi.donutcore.crates.EditorHolder;
+import ro.andreilarazboi.donutcore.crates.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import ro.andreilarazboi.donutcore.crates.CratesModule;
-import ro.andreilarazboi.donutcore.crates.model.Crate;
-import ro.andreilarazboi.donutcore.crates.model.CrateKey;
-import ro.andreilarazboi.donutcore.crates.util.ColorUtil;
-import ro.andreilarazboi.donutcore.crates.util.ItemBuilder;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+public class KeyEditorGUI {
+    private final DonutCrates plugin;
 
-public class KeyEditorGUI extends AbstractGUI {
-
-    private final CratesModule module;
-    private final Crate crate;
-
-    private static final int SLOT_KEY_PREVIEW    = 4;
-    private static final int SLOT_MATERIAL       = 10;
-    private static final int SLOT_DISPLAY_NAME   = 12;
-    private static final int SLOT_LORE           = 14;
-    private static final int SLOT_CUSTOM_MODEL   = 16;
-    private static final int SLOT_BACK           = 49;
-
-    public KeyEditorGUI(CratesModule module, Crate crate) {
-        this.module = module;
-        this.crate = crate;
+    public KeyEditorGUI(DonutCrates plugin) {
+        this.plugin = plugin;
     }
 
-    @Override
-    public void open(Player player) {
-        Component title = ColorUtil.parse("&8Key Editor: &r" + crate.getDisplayName())
-                .decoration(TextDecoration.ITALIC, false);
-        inventory = Bukkit.createInventory(this, 54, title);
-
-        ItemStack border = ItemBuilder.filler(Material.GRAY_STAINED_GLASS_PANE);
-        for (int i = 0; i < 54; i++) inventory.setItem(i, border);
-
-        CrateKey key = crate.getPhysicalKey();
-
-        inventory.setItem(SLOT_KEY_PREVIEW, module.getCrateManager().createKeyItem(crate));
-
-        inventory.setItem(SLOT_MATERIAL, new ItemBuilder(Material.GRASS_BLOCK)
-                .name("&eKey Material")
-                .lore("&7Current: &f" + key.getMaterial().name(),
-                      "",
-                      "&eLeft-click &7to use held item material")
-                .build());
-
-        inventory.setItem(SLOT_DISPLAY_NAME, new ItemBuilder(Material.NAME_TAG)
-                .name("&eDisplay Name")
-                .lore("&7Current: &f" + ColorUtil.strip(key.getDisplayName()),
-                      "",
-                      "&eClick &7to change")
-                .build());
-
-        java.util.List<String> loreInfo = new ArrayList<>();
-        loreInfo.add("&7Current lore:");
-        if (key.getLore() != null && !key.getLore().isEmpty()) {
-            key.getLore().forEach(l -> loreInfo.add("  &f" + ColorUtil.strip(l)));
+    public Inventory build(String keyId) {
+        ItemStack keyItem;
+        Material material;
+        this.plugin.ensureKeyConfig(keyId);
+        FileConfiguration saves = this.plugin.cfg.saves;
+        String base = "keys." + keyId;
+        String name = saves.getString(base + ".displayname", "&#0fe30f" + keyId + " Key");
+        String mat = saves.getString(base + ".material", "TRIPWIRE_HOOK");
+        boolean virt = saves.getBoolean(base + ".virtual", true);
+        try {
+            material = Material.valueOf((String)mat);
+        }
+        catch (IllegalArgumentException ex) {
+            material = Material.TRIPWIRE_HOOK;
+        }
+        EditorHolder holder = new EditorHolder();
+        Inventory inv = Bukkit.createInventory((InventoryHolder)holder, (int)27, (String)Utils.formatColors("&#444444" + keyId + " Key Editor"));
+        holder.setInventory(inv);
+        ItemStack filler = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        ItemMeta fm = filler.getItemMeta();
+        if (fm != null) {
+            fm.setDisplayName(" ");
+            filler.setItemMeta(fm);
+        }
+        for (int i = 0; i < inv.getSize(); ++i) {
+            inv.setItem(i, filler);
+        }
+        if (saves.isItemStack(base + ".item")) {
+            ItemStack tmp = saves.getItemStack(base + ".item");
+            keyItem = tmp == null ? new ItemStack(material) : tmp.clone();
         } else {
-            loreInfo.add("  &8None");
+            keyItem = new ItemStack(material);
+            ItemMeta km0 = keyItem.getItemMeta();
+            if (km0 != null) {
+                km0.setDisplayName(Utils.formatColors(name));
+                keyItem.setItemMeta(km0);
+            }
         }
-        loreInfo.add("");
-        loreInfo.add("&eLeft-click &7to set (lines separated by |)");
-        loreInfo.add("&cRight-click &7to clear");
-        inventory.setItem(SLOT_LORE, new ItemBuilder(Material.WRITABLE_BOOK)
-                .name("&eLore")
-                .lore(loreInfo)
-                .build());
-
-        inventory.setItem(SLOT_CUSTOM_MODEL, new ItemBuilder(Material.COMPARATOR)
-                .name("&eCustom Model Data")
-                .lore("&7Current: &f" + key.getCustomModelData(),
-                      "",
-                      "&eClick &7to change")
-                .build());
-
-        inventory.setItem(SLOT_BACK, new ItemBuilder(Material.ARROW).name("&7Back").build());
-
-        player.openInventory(inventory);
+        ItemMeta km = keyItem.getItemMeta();
+        if (km != null) {
+            ArrayList<String> lore = km.hasLore() ? new ArrayList<String>(km.getLore()) : new ArrayList<>();
+            lore.add("");
+            lore.add(Utils.formatColors("&#bfbfbfPut an item on your cursor"));
+            lore.add(Utils.formatColors("&#bfbfbfand click this slot to set"));
+            lore.add(Utils.formatColors("&#bfbfbfthe physical key item."));
+            km.setLore(lore);
+            km.addItemFlags(new ItemFlag[]{ItemFlag.HIDE_ATTRIBUTES});
+            keyItem.setItemMeta(km);
+        }
+        inv.setItem(10, keyItem);
+        inv.setItem(12, this.item(Material.NAME_TAG, "&#f5f5f5Edit Key Displayname", "&#bfbfbfClick to edit the name using a sign.", "&#bfbfbfSupports & and &#RRGGBB colors."));
+        inv.setItem(14, this.item(virt ? Material.LIME_DYE : Material.RED_DYE, virt ? "&#f5f5f5Virtual Keys: &#0fe30fENABLED" : "&#f5f5f5Virtual Keys: &#d61111DISABLED", "&#bfbfbfIf enabled, keys are stored virtually", "&#bfbfbfin saves.yml (per player) instead of items."));
+        inv.setItem(16, this.item(Material.CHEST, "&#0fe30fReceive Key Item", "&#bfbfbfClick to receive one key item", "&#bfbfbfso you can clone it or test it."));
+        inv.setItem(18, this.item(Material.ARROW, "&#f5f5f5\u00ab Back", "&#bfbfbfReturn to the &#0fe30fKey Manager&#bfbfbf."));
+        int usedBy = this.plugin.countCratesUsingKey(keyId);
+        inv.setItem(26, this.item(Material.BARRIER, "&#d61111&lDelete Key", new String[]{"&#bfbfbfDeletes this key permanently.", usedBy > 0 ? "&#d61111Warning: &#bfbfbfUsed by &f" + usedBy + " &#bfbfbfcrates." : "&#bfbfbfNot used by any crate.", "", "&#d61111This action cannot be undone."}));
+        return inv;
     }
 
-    @Override
-    public void handleClick(InventoryClickEvent event) {
-        event.setCancelled(true);
-        if (!(event.getWhoClicked() instanceof Player player)) return;
-
-        int slot = event.getSlot();
-        CrateKey key = crate.getPhysicalKey();
-
-        switch (slot) {
-            case SLOT_MATERIAL -> {
-                ItemStack hand = player.getInventory().getItemInMainHand();
-                if (hand != null && hand.getType() != Material.AIR) {
-                    key.setMaterial(hand.getType());
-                    module.getCrateManager().saveCrate(crate);
-                    new KeyEditorGUI(module, crate).open(player);
+    private ItemStack item(Material mat, String name, String ... loreLines) {
+        ItemStack i = new ItemStack(mat);
+        ItemMeta im = i.getItemMeta();
+        if (im != null) {
+            im.setDisplayName(Utils.formatColors(name));
+            if (loreLines.length > 0) {
+                ArrayList<String> lore = new ArrayList<String>();
+                for (String s : loreLines) {
+                    lore.add(Utils.formatColors(s));
                 }
+                im.setLore(lore);
             }
-            case SLOT_DISPLAY_NAME -> {
-                player.closeInventory();
-                module.startChatInput(player, "Enter new key display name (supports &colors):", input -> {
-                    key.setDisplayName(input);
-                    module.getCrateManager().saveCrate(crate);
-                    new KeyEditorGUI(module, crate).open(player);
-                });
-            }
-            case SLOT_LORE -> {
-                if (!event.isRightClick()) {
-                    player.closeInventory();
-                    module.startChatInput(player, "Enter lore lines separated by | (supports &colors):", input -> {
-                        String[] lines = input.split("\\|");
-                        java.util.List<String> lore = new ArrayList<>();
-                        for (String line : lines) lore.add(line.trim());
-                        key.setLore(lore);
-                        module.getCrateManager().saveCrate(crate);
-                        new KeyEditorGUI(module, crate).open(player);
-                    });
-                } else {
-                    key.setLore(new ArrayList<>());
-                    module.getCrateManager().saveCrate(crate);
-                    new KeyEditorGUI(module, crate).open(player);
-                }
-            }
-            case SLOT_CUSTOM_MODEL -> {
-                player.closeInventory();
-                module.startChatInput(player, "Enter custom model data (0 for none):", input -> {
-                    try {
-                        key.setCustomModelData(Integer.parseInt(input));
-                        module.getCrateManager().saveCrate(crate);
-                    } catch (NumberFormatException e) {
-                        player.sendMessage(ColorUtil.colorize("&cInvalid number!"));
-                    }
-                    new KeyEditorGUI(module, crate).open(player);
-                });
-            }
-            case SLOT_BACK -> new CrateEditorGUI(module, crate).open(player);
+            im.addItemFlags(new ItemFlag[]{ItemFlag.HIDE_ATTRIBUTES});
+            i.setItemMeta(im);
         }
+        return i;
     }
 }
+

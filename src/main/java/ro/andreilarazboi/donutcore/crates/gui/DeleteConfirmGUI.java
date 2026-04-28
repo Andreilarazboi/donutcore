@@ -1,69 +1,123 @@
+
 package ro.andreilarazboi.donutcore.crates.gui;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
+import java.util.Collections;
+import java.util.List;
+import ro.andreilarazboi.donutcore.crates.DonutCrates;
+import ro.andreilarazboi.donutcore.crates.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import ro.andreilarazboi.donutcore.crates.CratesModule;
-import ro.andreilarazboi.donutcore.crates.model.Crate;
-import ro.andreilarazboi.donutcore.crates.util.ColorUtil;
-import ro.andreilarazboi.donutcore.crates.util.ItemBuilder;
+import org.bukkit.inventory.meta.ItemMeta;
 
-public class DeleteConfirmGUI extends AbstractGUI {
+public class DeleteConfirmGUI {
+    private final DonutCrates plugin;
 
-    private final CratesModule module;
-    private final Crate crate;
-
-    public DeleteConfirmGUI(CratesModule module, Crate crate) {
-        this.module = module;
-        this.crate = crate;
+    public DeleteConfirmGUI(DonutCrates pl) {
+        this.plugin = pl;
     }
 
-    @Override
-    public void open(Player player) {
-        Component title = ColorUtil.parse("&c&lDelete Crate?").decoration(TextDecoration.ITALIC, false);
-        inventory = Bukkit.createInventory(this, 27, title);
-
-        ItemStack border = ItemBuilder.filler(Material.RED_STAINED_GLASS_PANE);
-        for (int i = 0; i < 27; i++) inventory.setItem(i, border);
-
-        inventory.setItem(11, new ItemBuilder(Material.BARRIER)
-                .name("&c&lYES, DELETE")
-                .lore("&7This will permanently delete",
-                      "&7crate &e" + ColorUtil.strip(crate.getDisplayName()),
-                      "&cThis cannot be undone!")
-                .build());
-
-        inventory.setItem(13, new ItemBuilder(Material.CHEST)
-                .name(crate.getDisplayName())
-                .lore("&7Deleting this crate...")
-                .build());
-
-        inventory.setItem(15, new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
-                .name("&a&lCANCEL")
-                .lore("&7Go back without deleting")
-                .build());
-
-        player.openInventory(inventory);
+    public Inventory build(Player p, ItemStack display) {
+        ConfigurationSection c = this.plugin.cfg.config.getConfigurationSection("delete-confirm-menu");
+        String title = Utils.formatColors(DeleteConfirmGUI.getString(c, "title", "&#8b0000\u1d05\u1d07\u029f\u1d07\u1d1b\u1d07 \u1d04\u1d0f\u0274\ua730\u026a\u0280\u1d0d"));
+        int size = DeleteConfirmGUI.clamp9(DeleteConfirmGUI.getInt(c, "rows", 3));
+        boolean fill = DeleteConfirmGUI.getBool(c, "fillerEnabled", true);
+        Material filler = DeleteConfirmGUI.safeMat(DeleteConfirmGUI.getString(c, "fillerMaterial", "BLACK_STAINED_GLASS_PANE"), Material.BLACK_STAINED_GLASS_PANE);
+        Inventory inv = Bukkit.createInventory(null, (int)size, (String)title);
+        if (fill) {
+            ItemStack f = new ItemStack(filler);
+            ItemMeta fm = f.getItemMeta();
+            if (fm != null) {
+                fm.setDisplayName(" ");
+                f.setItemMeta(fm);
+            }
+            for (int i = 0; i < size; ++i) {
+                inv.setItem(i, f);
+            }
+        }
+        int clickedSlot = DeleteConfirmGUI.getInt(c, "ClickedItem.slot", 13);
+        String clickedNameTpl = DeleteConfirmGUI.getString(c, "ClickedItem.displayname", "%ClickedItemName%");
+        List<String> clickedLore = DeleteConfirmGUI.getList(c, "ClickedItem.lore");
+        ItemStack mid = display == null ? new ItemStack(Material.BARRIER) : display.clone();
+        ItemMeta cm = mid.getItemMeta();
+        if (cm != null) {
+            String repl = display != null && display.hasItemMeta() && display.getItemMeta().hasDisplayName() ? display.getItemMeta().getDisplayName() : (display != null ? display.getType().name() : "Unknown");
+            cm.setDisplayName(Utils.formatColors(clickedNameTpl.replace("%ClickedItemName%", repl)));
+            if (!clickedLore.isEmpty()) {
+                cm.setLore(Utils.formatColors(clickedLore));
+            }
+            mid.setItemMeta(cm);
+        }
+        DeleteConfirmGUI.safeSet(inv, clickedSlot, mid);
+        Material confirmMat = DeleteConfirmGUI.safeMat(DeleteConfirmGUI.getString(c, "Confirm.material", "LIME_STAINED_GLASS_PANE"), Material.LIME_STAINED_GLASS_PANE);
+        int confirmSlot = DeleteConfirmGUI.getInt(c, "Confirm.slot", 15);
+        String confirmName = DeleteConfirmGUI.getString(c, "Confirm.displayname", "&aConfirm Delete");
+        List<String> confirmLore = DeleteConfirmGUI.getList(c, "Confirm.lore");
+        ItemStack con = new ItemStack(confirmMat);
+        ItemMeta cmeta = con.getItemMeta();
+        if (cmeta != null) {
+            cmeta.setDisplayName(Utils.formatColors(confirmName));
+            if (!confirmLore.isEmpty()) {
+                cmeta.setLore(Utils.formatColors(confirmLore));
+            }
+            con.setItemMeta(cmeta);
+        }
+        DeleteConfirmGUI.safeSet(inv, confirmSlot, con);
+        Material declineMat = DeleteConfirmGUI.safeMat(DeleteConfirmGUI.getString(c, "Decline.material", "RED_STAINED_GLASS_PANE"), Material.RED_STAINED_GLASS_PANE);
+        int declineSlot = DeleteConfirmGUI.getInt(c, "Decline.slot", 11);
+        String declineName = DeleteConfirmGUI.getString(c, "Decline.displayname", "&cCancel");
+        List<String> declineLore = DeleteConfirmGUI.getList(c, "Decline.lore");
+        ItemStack dec = new ItemStack(declineMat);
+        ItemMeta dmeta = dec.getItemMeta();
+        if (dmeta != null) {
+            dmeta.setDisplayName(Utils.formatColors(declineName));
+            if (!declineLore.isEmpty()) {
+                dmeta.setLore(Utils.formatColors(declineLore));
+            }
+            dec.setItemMeta(dmeta);
+        }
+        DeleteConfirmGUI.safeSet(inv, declineSlot, dec);
+        return inv;
     }
 
-    @Override
-    public void handleClick(InventoryClickEvent event) {
-        event.setCancelled(true);
-        if (!(event.getWhoClicked() instanceof Player player)) return;
+    private static int clamp9(int rows) {
+        rows = Math.max(1, Math.min(6, rows));
+        return rows * 9;
+    }
 
-        int slot = event.getSlot();
-        if (slot == 11) {
-            module.getHologramManager().removeHologram(crate.getName());
-            module.getCrateManager().deleteCrate(crate.getName());
-            player.closeInventory();
-            player.sendMessage(ColorUtil.colorize("&aCrate &e" + crate.getName() + " &adeleted."));
-            new CrateListGUI(module).open(player);
-        } else if (slot == 15) {
-            new CrateEditorGUI(module, crate).open(player);
+    private static void safeSet(Inventory inv, int slot, ItemStack is) {
+        if (slot < 0 || slot >= inv.getSize()) {
+            return;
+        }
+        inv.setItem(slot, is);
+    }
+
+    private static Material safeMat(String name, Material def) {
+        try {
+            return Material.valueOf((String)name);
+        }
+        catch (Exception ignored) {
+            return def;
         }
     }
+
+    private static String getString(ConfigurationSection c, String path, String def) {
+        return c != null && c.isString(path) ? c.getString(path) : def;
+    }
+
+    private static int getInt(ConfigurationSection c, String path, int def) {
+        return c != null && c.isInt(path) ? c.getInt(path) : def;
+    }
+
+    private static boolean getBool(ConfigurationSection c, String path, boolean def) {
+        return c != null && c.isBoolean(path) ? c.getBoolean(path) : def;
+    }
+
+    private static List<String> getList(ConfigurationSection c, String path) {
+        return c != null && c.isList(path) ? c.getStringList(path) : Collections.emptyList();
+    }
 }
+
