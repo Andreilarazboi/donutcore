@@ -185,9 +185,47 @@ sellhistory-menu:
 
 # Item prices browser (opened via /donutsell prices)
 item-prices-menu:
+  title: '&8Item Prices (Page %page%)'
+  rows: 6
+  previous:
+    previous-page-material: ARROW
+    previous-page-slot: 45
+    previous-page-displayname: '&aPrevious'
+    previous-page-lore: []
+  next:
+    next-page-material: ARROW
+    next-page-slot: 53
+    next-page-displayname: '&aNext'
+    next-page-lore: []
+  refresh:
+    material: ANVIL
+    slot: 49
+    displayname: '&aRefresh'
+    lore: []
+  sort:
+    material: HOPPER
+    slot: 50
+    displayname: '&aSort'
+    NotCurrentColor: '&f'
+    CurrentColor: '&a'
+    lore:
+      - High to Low
+      - Low to High
+      - A to Z
+      - Z to A
+      - No Listed Price
   filter:
+    material: CHEST
+    slot: 48
+    displayname: '&aFilter'
+    NotCurrentColor: '&f'
+    CurrentColor: '&a'
     lore:
       - all
       - ores
       - mob_drops
       - natural_items
+  items:
+    displayname: '&f%item%'
+    lore:
+      - '&7Value: &b$%item-value%'

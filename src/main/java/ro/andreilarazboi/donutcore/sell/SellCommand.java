@@ -29,6 +29,10 @@ public class SellCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(Utils.formatColors("&cOnly players may use /sell."));
             return true;
         }
+        if (this.plugin.getEconomy() == null) {
+            sender.sendMessage(Utils.formatColors("&cVault economy is not set up. Please install Vault + an economy plugin."));
+            return true;
+        }
         Player p = (Player) sender;
         if (args.length == 1 && args[0].equalsIgnoreCase("hand")) {
             if (!this.plugin.getConfig().getBoolean("sell-command.hand-enabled", true)) {

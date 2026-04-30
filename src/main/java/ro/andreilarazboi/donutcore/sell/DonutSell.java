@@ -202,21 +202,6 @@ public final class DonutSell implements Listener {
         this.setupStorage();
         this.rebuildDisabledItemsCache();
 
-        if (!this.setupVault()) {
-            this.parent.getLogger().severe("[DonutCore] Vault not found. Sell module disabled.");
-            return;
-        }
-
-        if (this.getConfig().getBoolean("use-new-sell-menu", false)) {
-            Objects.requireNonNull(this.parent.getCommand("sellmulti")).setExecutor((sender, cmd, lbl, args) -> {
-                if (!(sender instanceof Player p)) { sender.sendMessage("§cOnly players can use this command."); return true; }
-                this.getSellGui().openNew(p);
-                return true;
-            });
-        } else {
-            this.unregisterSellMultiCommand();
-        }
-
         this.cleanupListener = new CleanupListener(this);
         for (Player p : this.parent.getServer().getOnlinePlayers()) {
             this.cleanupListener.stripAllLore(p);
@@ -248,6 +233,20 @@ public final class DonutSell implements Listener {
         new VaultMoneyPlaceholder(this).register();
         this.unregisterOtherSellCommands();
         new ToggleWorthCommand(this);
+
+        if (this.getConfig().getBoolean("use-new-sell-menu", false)) {
+            Objects.requireNonNull(this.parent.getCommand("sellmulti")).setExecutor((sender, cmd, lbl, args) -> {
+                if (!(sender instanceof Player p)) { sender.sendMessage("§cOnly players can use this command."); return true; }
+                this.getSellGui().openNew(p);
+                return true;
+            });
+        } else {
+            this.unregisterSellMultiCommand();
+        }
+
+        if (!this.setupVault()) {
+            this.parent.getLogger().severe("[DonutCore] Vault not found — economy features disabled. Install Vault + an economy plugin.");
+        }
 
         if (this.getConfig().getBoolean("sell-axe.use-countdown", true)) {
             this.runRepeatingGlobal(() -> {
@@ -505,14 +504,16 @@ public final class DonutSell implements Listener {
             knownCmdsField.setAccessible(true);
             @SuppressWarnings("unchecked")
             Map<String, Command> known = (Map<String, Command>) knownCmdsField.get(cmdMap);
+            PluginCommand ourSell = this.parent.getCommand("sell");
             Iterator<Map.Entry<String, Command>> it = known.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry<String, Command> entry = it.next();
                 String key = entry.getKey();
                 Command cmd = entry.getValue();
-                if (key.equalsIgnoreCase("sell") || (cmd instanceof PluginCommand pc && pc.getName().equalsIgnoreCase("sell"))) { it.remove(); continue; }
-                if (key.toLowerCase(Locale.ROOT).endsWith(":sell")) it.remove();
+                if (cmd == ourSell) continue;
+                if (key.equalsIgnoreCase("sell") || key.toLowerCase(Locale.ROOT).endsWith(":sell")) it.remove();
             }
+            if (ourSell != null) known.putIfAbsent("sell", ourSell);
         } catch (Exception e) {
             this.parent.getLogger().warning("Failed to unregister other /sell commands: " + e.getMessage());
         }
