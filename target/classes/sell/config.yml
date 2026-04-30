@@ -1,0 +1,60 @@
+# DonutCore Sell Configuration
+
+# Storage type: YAML, SQLITE, or MYSQL
+storage:
+  type: SQLITE
+
+sqlite:
+  file: sell-data.db
+  table-prefix: sell_
+
+# Default item sell value when no price is set
+default-value: 0.1
+
+# If true, items with no listed price cannot be sold
+missing-price-not-sellable: false
+
+# If true, price multipliers from progress-menu levels are applied
+use-multipliers: true
+
+# Switch between the classic sell menu and the new categorized menu
+use-new-sell-menu: false
+
+# Items that cannot be sold (list of Material names)
+disabled-items: []
+
+# Display a worth lore line on items in inventories
+display-worth-lore: true
+
+# Show worth per individual item rather than per stack
+worth-lore-per-item: false
+
+# Lore template for the worth overlay (supports & color codes and &#RRGGBB hex)
+lore:
+  - '&#34ee80Worth: $%amount%'
+
+# GUI title names that should show worth lore (partial match)
+worth-lore-whitelist-gui-names: []
+
+# Sell wand settings
+sell-axe:
+  use-countdown: true
+  lore:
+    - '&7Expires in: &e%countdown%'
+  default-duration-hours: 24
+
+# How the sell notification is shown: CHAT, ACTIONBAR, TITLE (can be combined with commas)
+sell-notify-mode: ACTIONBAR
+
+sell-notify:
+  screen:
+    title: '&a+$%amount%'
+    subtitle: '&7You sold %items% items'
+    fade-in: 5
+    stay: 40
+    fade-out: 10
+
+sounds:
+  click-sound: UI_BUTTON_CLICK
+  page-switch: ITEM_BOOK_PAGE_TURN
+  declined: ENTITY_VILLAGER_NO

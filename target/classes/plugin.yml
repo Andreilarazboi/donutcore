@@ -1,0 +1,65 @@
+name: DonutCore
+version: '1.0.2'
+main: ro.andreilarazboi.donutcore.DonutCore
+api-version: '1.21'
+authors: [Andreilarazboi]
+description: DonutCore - Modular plugin with DonutSMP like modules.
+website: ''
+
+softdepend:
+  - PlaceholderAPI
+  - Vault
+
+commands:
+  sell:
+    description: Open the sell menu
+    usage: /sell
+    permission: donutcore.sell.use
+  sellmulti:
+    description: Open the new sell menu
+    usage: /sellmulti
+    permission: donutcore.sell.use
+  worth:
+    description: Check item worth
+    usage: /worth
+    permission: donutcore.sell.use
+  toggleworth:
+    description: Toggle worth lore display
+    usage: /toggleworth
+    permission: donutcore.sell.use
+  sellhistory:
+    description: View sell history
+    usage: /sellhistory
+    permission: donutcore.sell.use
+  donutsell:
+    description: Admin sell command
+    usage: /donutsell <subcommand>
+    permission: donutcore.sell.admin
+  donutcrate:
+    description: Main crate command
+    usage: /donutcrate <subcommand>
+    aliases: [dcrate, crate]
+    permission: donutcore.crate.use
+
+permissions:
+  donutcore.crate.use:
+    description: Open crates
+    default: true
+  donutcore.crate.admin:
+    description: Manage crates
+    default: op
+  donutcore.crate.key.give:
+    description: Give crate keys to players
+    default: op
+  donutcore.crate.key.pay:
+    description: Pay crate keys to other players
+    default: true
+  donutcore.crate.stats:
+    description: View crate stats
+    default: true
+  donutcore.sell.use:
+    description: Use sell commands
+    default: true
+  donutcore.sell.admin:
+    description: Admin sell commands
+    default: op
