@@ -1,0 +1,193 @@
+# DonutSell - Menus Configuration
+
+# Classic sell menu (opened via /sell)
+sell-menu:
+  title: '&aSell Items'
+  sound-on-close: ENTITY_EXPERIENCE_ORB_PICKUP
+  chat-message: '&#34ee80+$%amount%'
+  actionbar-message: '&#34ee80+$%amount%'
+  # Category items displayed in the sell menu (order matters)
+  items:
+    - ores
+    - mob_drops
+    - natural_items
+  item-settings:
+    ores:
+      displayname: '&#f0c040Ores'
+      material: DIAMOND
+      slot: 0
+    mob_drops:
+      displayname: '&#e07060Mob Drops'
+      material: BONE
+      slot: 1
+    natural_items:
+      displayname: '&#60c060Natural Items'
+      material: OAK_LEAVES
+      slot: 2
+
+# New categorized sell menu (opened via /sellmulti when use-new-sell-menu: true)
+new-sell-menu:
+  title: '&aSell Items'
+  items:
+    - ores
+    - mob_drops
+    - natural_items
+  item-settings:
+    ores:
+      displayname: '&#f0c040Ores'
+      material: DIAMOND
+      slot: 10
+    mob_drops:
+      displayname: '&#e07060Mob Drops'
+      material: BONE
+      slot: 12
+    natural_items:
+      displayname: '&#60c060Natural Items'
+      material: OAK_LEAVES
+      slot: 14
+
+# Category item browser (opened when clicking a category in sell menu)
+category-menu:
+  rows: 6
+  title: '%item% Items'
+  previous-page-slot: 48
+  next-page-slot: 50
+  previous-page:
+    material: ARROW
+    displayname: '&aPrevious'
+    lore: []
+  next-page:
+    material: ARROW
+    displayname: '&aNext'
+    lore: []
+  back-button:
+    slot: 45
+    material: BARRIER
+    displayname: '&cBack'
+    lore: []
+  item:
+    displayname: '%item%'
+    lore:
+      - '&7Value: &b$%item-value%'
+
+# Progress / multiplier GUI
+progress-menu:
+  title: '%item% Progress'
+  rows: 3
+  loading-color: '&#20f706'
+  complete-loading-color: '&#20f706'
+  bar-length: 10
+  bar-symbol: '━'
+  incomplete:
+    material: RED_STAINED_GLASS_PANE
+    displayname: '&cIncomplete'
+    lore:
+      - '&7Progress: &f%progress%%'
+      - '&7Needed: &f%amount-needed%'
+      - '%loading-bar%'
+      - '&7Multiplier: &ax%multi%'
+  working:
+    material: YELLOW_STAINED_GLASS_PANE
+    displayname: '&eIn Progress'
+    lore:
+      - '&7Progress: &f%progress%%'
+      - '&7Needed: &f%amount-needed%'
+      - '%loading-bar%'
+      - '&7Multiplier: &ax%multi%'
+  complete:
+    material: LIME_STAINED_GLASS_PANE
+    displayname: '&aComplete'
+    lore:
+      - '&7Progress: &f100%'
+      - '&7Needed: &f%amount-needed%'
+      - '%loading-bar%'
+      - '&7Multiplier: &ax%multi%'
+  filler:
+    enabled: false
+    material: BLACK_STAINED_GLASS_PANE
+    displayname: ' '
+    lore: []
+  back-button:
+    enabled: false
+    slot: -1
+    material: BARRIER
+    displayname: '&cBack'
+    lore: []
+  levels:
+    level1:
+      amountNeeded: 10000
+      multi: 1.25
+      slot: 10
+    level2:
+      amountNeeded: 50000
+      multi: 1.5
+      slot: 12
+    level3:
+      amountNeeded: 200000
+      multi: 2.0
+      slot: 14
+  categories:
+    ores:
+      icon:
+        material: DIAMOND
+        slot: 4
+        displayname: '&#f0c040%item% &7(%sold% sold)'
+        lore:
+          - '&7Total sold: &b$%sold%'
+    mob_drops:
+      icon:
+        material: BONE
+        slot: 4
+        displayname: '&#e07060%item% &7(%sold% sold)'
+        lore:
+          - '&7Total sold: &b$%sold%'
+
+# Sell history GUI
+sellhistory-menu:
+  rows: 6
+  title: '&8Sell History (Page %history-page%)'
+  sold-items:
+    displayname: '&f%Item-Name%'
+    lore:
+      - '&7Amount sold: &b%amount-sold%'
+      - '&7Revenue: &b$%price-sold%'
+  history-back:
+    slot: 45
+    material: ARROW
+    displayname: '&fBack'
+    lore: []
+  history-next:
+    slot: 53
+    material: ARROW
+    displayname: '&fNext'
+    lore: []
+  history-sort:
+    slot: 50
+    material: HOPPER
+    displayname: '&aSort'
+    NotCurrentColor: '&f'
+    CurrentColor: '&a'
+    lore:
+      - Highest Revenue
+      - Lowest Revenue
+      - Name
+  history-refresh:
+    slot: 49
+    material: ANVIL
+    displayname: '&aRefresh'
+    lore: []
+  history-player:
+    slot: 48
+    material: PLAYER_HEAD
+    displayname: '%player%'
+    lore:
+      - '&7Your sell history'
+
+# Item prices browser (opened via /donutsell prices)
+item-prices-menu:
+  filter:
+    lore:
+      - all
+      - ores
+      - mob_drops
+      - natural_items

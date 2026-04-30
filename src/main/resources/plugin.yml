@@ -8,8 +8,33 @@ website: ''
 
 softdepend:
   - PlaceholderAPI
+  - Vault
 
 commands:
+  sell:
+    description: Open the sell menu
+    usage: /sell
+    permission: sell.use
+  sellmulti:
+    description: Open the new sell menu
+    usage: /sellmulti
+    permission: sell.use
+  worth:
+    description: Check item worth
+    usage: /worth
+    permission: sell.use
+  toggleworth:
+    description: Toggle worth lore display
+    usage: /toggleworth
+    permission: sell.use
+  sellhistory:
+    description: View sell history
+    usage: /sellhistory
+    permission: sell.use
+  donutsell:
+    description: Admin sell command
+    usage: /donutsell <subcommand>
+    permission: sell.admin
   donutcrate:
     description: Main crate command
     usage: /donutcrate <subcommand>

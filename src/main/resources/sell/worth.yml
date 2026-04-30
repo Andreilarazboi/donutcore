@@ -1,0 +1,46 @@
+# DonutSell - Item Prices
+# Format: categories.<category-name> is a list of {key-value: price} entries
+# Key naming:
+#   Normal items:      diamond-value, iron_ingot-value
+#   Spawners:          zombie_spawner-value
+#   Enchanted books:   sharpness5-value, efficiency4-value
+#   Potions:           healing-value, long_swiftness-value, strong_leaping-value
+#                      splash_healing-value, lingering_slowness-value
+
+categories:
+  ores:
+    - diamond-value: 250.0
+    - emerald-value: 100.0
+    - gold_ingot-value: 15.0
+    - iron_ingot-value: 5.0
+    - coal-value: 1.0
+    - lapis_lazuli-value: 3.0
+    - redstone-value: 2.0
+    - quartz-value: 2.0
+    - netherite_ingot-value: 1000.0
+
+  mob_drops:
+    - bone-value: 2.0
+    - gunpowder-value: 5.0
+    - rotten_flesh-value: 0.5
+    - string-value: 2.0
+    - spider_eye-value: 3.0
+    - blaze_rod-value: 10.0
+    - ender_pearl-value: 15.0
+    - ghast_tear-value: 20.0
+    - magma_cream-value: 8.0
+    - slime_ball-value: 5.0
+
+  natural_items:
+    - oak_log-value: 2.0
+    - oak_leaves-value: 0.5
+    - sand-value: 0.5
+    - gravel-value: 0.5
+    - clay_ball-value: 1.0
+    - sugar_cane-value: 1.0
+    - cactus-value: 1.0
+    - wheat-value: 1.0
+    - carrot-value: 1.0
+    - potato-value: 1.0
+    - melon_slice-value: 1.0
+    - pumpkin-value: 5.0

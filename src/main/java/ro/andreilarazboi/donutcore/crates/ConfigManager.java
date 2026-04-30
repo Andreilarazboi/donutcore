@@ -21,12 +21,12 @@ public class ConfigManager {
 
     public ConfigManager(DonutCrates plugin) {
         this.plugin = plugin;
-        this.cfgFile = new File(plugin.getDataFolder(), "config.yml");
-        this.cratesFile = new File(plugin.getDataFolder(), "crates.yml");
-        this.savesFile = new File(plugin.getDataFolder(), "saves.yml");
-        this.ensureFileExists("config.yml", this.cfgFile);
-        this.ensureFileExists("crates.yml", this.cratesFile);
-        this.ensureFileExists("saves.yml", this.savesFile);
+        this.cfgFile = new File(plugin.getDataFolder(), "crates/config.yml");
+        this.cratesFile = new File(plugin.getDataFolder(), "crates/crates.yml");
+        this.savesFile = new File(plugin.getDataFolder(), "crates/saves.yml");
+        this.ensureFileExists("crates/config.yml", this.cfgFile);
+        this.ensureFileExists("crates/crates.yml", this.cratesFile);
+        this.ensureFileExists("crates/saves.yml", this.savesFile);
         this.reloadAll();
     }
 
