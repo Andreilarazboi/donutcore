@@ -3,7 +3,7 @@ version: '${project.version}'
 main: ro.andreilarazboi.donutcore.DonutCore
 api-version: '1.21'
 authors: [Andreilarazboi]
-description: DonutCore - Modular plugin with crates, TPA, and more.
+description: DonutCore - Modular plugin with DonutSMP like modules.
 website: ''
 
 softdepend:
@@ -14,27 +14,27 @@ commands:
   sell:
     description: Open the sell menu
     usage: /sell
-    permission: sell.use
+    permission: donutcore.sell.use
   sellmulti:
     description: Open the new sell menu
     usage: /sellmulti
-    permission: sell.use
+    permission: donutcore.sell.use
   worth:
     description: Check item worth
     usage: /worth
-    permission: sell.use
+    permission: donutcore.sell.use
   toggleworth:
     description: Toggle worth lore display
     usage: /toggleworth
-    permission: sell.use
+    permission: donutcore.sell.use
   sellhistory:
     description: View sell history
     usage: /sellhistory
-    permission: sell.use
+    permission: donutcore.sell.use
   donutsell:
     description: Admin sell command
     usage: /donutsell <subcommand>
-    permission: sell.admin
+    permission: donutcore.sell.admin
   donutcrate:
     description: Main crate command
     usage: /donutcrate <subcommand>
@@ -57,3 +57,9 @@ permissions:
   donutcore.crate.stats:
     description: View crate stats
     default: true
+  donutcore.sell.use:
+    description: Use sell commands
+    default: true
+  donutcore.sell.admin:
+    description: Admin sell commands
+    default: op
