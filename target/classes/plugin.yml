@@ -4,7 +4,6 @@ main: ro.andreilarazboi.donutcore.DonutCore
 api-version: '1.21'
 authors: [Andreilarazboi]
 description: DonutCore - Modular plugin with DonutSMP like modules.
-website: ''
 
 softdepend:
   - PlaceholderAPI
