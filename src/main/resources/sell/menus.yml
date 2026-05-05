@@ -1,231 +1,572 @@
-# DonutSell - Menus Configuration
-
-# Classic sell menu (opened via /sell)
 sell-menu:
-  title: '&aSell Items'
-  sound-on-close: ENTITY_EXPERIENCE_ORB_PICKUP
-  chat-message: '&#34ee80+$%amount%'
+  loading-color: '&#34ee80'
+  complete-loading-color: '&#34ee80'
+  bar-length: 20
+  bar-symbol: '&m '
+  title: '&#444444ᴘʟᴀᴄᴇ ɪᴛᴇᴍѕ ɪɴ ʜᴇʀᴇ ᴛᴏ ѕᴇʟʟ'
+  rows: 5
   actionbar-message: '&#34ee80+$%amount%'
-  # Category items displayed in the sell menu (order matters)
-  items:
-    - ores
-    - mob_drops
-    - natural_items
-  item-settings:
-    ores:
-      displayname: '&#f0c040Ores'
-      material: DIAMOND
-      slot: 0
-    mob_drops:
-      displayname: '&#e07060Mob Drops'
-      material: BONE
-      slot: 1
-    natural_items:
-      displayname: '&#60c060Natural Items'
-      material: OAK_LEAVES
-      slot: 2
+  chat-message: '&#34ee80+$%amount%'
 
-# New categorized sell menu (opened via /sellmulti when use-new-sell-menu: true)
+  items:
+    - CROPS
+    - BONE
+    - DIAMOND
+    - OAK_LEAVES
+    - NETHERITE_HELMET
+    - TROPICAL_FISH
+    - BOOK
+    - BREWING_STAND
+    - BRICK
+
+  item-settings:
+    CROPS:
+      displayname: '&#34ee80ᴄʀᴏᴘѕ'
+      material: WHEAT
+      lore:
+        - '&7Sell crops and farming materials to'
+        - '&7upgrade your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+
+    BONE:
+      displayname: '&#34ee80ᴍᴏʙ ᴅʀᴏᴘѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    DIAMOND:
+      displayname: '&#34ee80ᴏʀᴇѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    OAK_LEAVES:
+      displayname: '&#34ee80ɴᴀᴛᴜʀᴀʟ ɪᴛᴇᴍѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    NETHERITE_HELMET:
+      displayname: '&#34ee80ᴀʀᴍᴏʀ ᴀɴᴅ ᴛᴏᴏʟѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    TROPICAL_FISH:
+      displayname: '&#34ee80ꜰɪѕʜ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BOOK:
+      displayname: '&#34ee80ᴇɴᴄʜᴀɴᴛᴇᴅ ʙᴏᴏᴋѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BREWING_STAND:
+      displayname: '&#34ee80ᴘᴏᴛɪᴏɴѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BRICK:
+      displayname: '&#34ee80ʙʟᴏᴄᴋѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+
 new-sell-menu:
-  title: '&aSell Items'
-  items:
-    - ores
-    - mob_drops
-    - natural_items
-  item-settings:
-    ores:
-      displayname: '&#f0c040Ores'
-      material: DIAMOND
-      slot: 10
-    mob_drops:
-      displayname: '&#e07060Mob Drops'
-      material: BONE
-      slot: 12
-    natural_items:
-      displayname: '&#60c060Natural Items'
-      material: OAK_LEAVES
-      slot: 14
+  loading-color: '&#34ee80'
+  complete-loading-color: '&#34ee80'
+  bar-length: 20
+  bar-symbol: '&m '
+  title: '&#444444sell multipliers'
+  rows: 3
+  actionbar-message: '&#34ee80+$%amount%'
+  chat-message: '&#34ee80+$%amount%'
 
-# Category item browser (opened when clicking a category in sell menu)
+  items:
+    - CROPS
+    - BONE
+    - DIAMOND
+    - OAK_LEAVES
+    - NETHERITE_HELMET
+    - TROPICAL_FISH
+    - BOOK
+    - BREWING_STAND
+    - BRICK
+
+  item-settings:
+    CROPS:
+      slot: 9
+      displayname: '&#34ee80ᴄʀᴏᴘѕ'
+      material: WHEAT
+      lore:
+        - '&7Sell crops and farming materials to'
+        - '&7upgrade your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+
+    BONE:
+      slot: 10
+      displayname: '&#34ee80ᴍᴏʙ ᴅʀᴏᴘѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    DIAMOND:
+      slot: 11
+      displayname: '&#34ee80ᴏʀᴇѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    OAK_LEAVES:
+      slot: 12
+      displayname: '&#34ee80ɴᴀᴛᴜʀᴀʟ ɪᴛᴇᴍѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    NETHERITE_HELMET:
+      slot: 13
+      displayname: '&#34ee80ᴀʀᴍᴏʀ ᴀɴᴅ ᴛᴏᴏʟѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    TROPICAL_FISH:
+      slot: 14
+      displayname: '&#34ee80ꜰɪѕʜ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BOOK:
+      slot: 15
+      displayname: '&#34ee80ᴇɴᴄʜᴀɴᴛᴇᴅ ʙᴏᴏᴋѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BREWING_STAND:
+      slot: 16
+      displayname: '&#34ee80ᴘᴏᴛɪᴏɴѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+    BRICK:
+      slot: 17
+      displayname: '&#34ee80ʙʟᴏᴄᴋѕ'
+      lore:
+        - '&7Sell items to upgrade'
+        - '&7your sell multiplier!'
+        - ''
+        - '&7Progress to &f%next-multi%x'
+        - '%progress-bar%&r &#34ee80(%progress%%)'
+
 category-menu:
   rows: 6
   title: '%item% Items'
+
+  titles:
+    CROPS: '&#444444ᴄʀᴏᴘ ᴘʀɪᴄᴇѕ'
+    BONE: '&#444444ᴍᴏʙ ᴅʀᴏᴘ ᴘʀɪᴄᴇѕ'
+    DIAMOND: '&#444444ᴏʀᴇ ᴘʀɪᴄᴇѕ'
+    OAK_LEAVES: '&#444444ɴᴀᴛᴜʀᴀʟ ɪᴛᴇᴍ ᴘʀɪᴄᴇѕ'
+    NETHERITE_HELMET: '&#444444ᴀʀᴍᴏʀ ᴀɴᴅ ᴛᴏᴏʟ ᴘʀɪᴄᴇѕ'
+    TROPICAL_FISH: '&#444444ꜰɪѕʜ ᴘʀɪᴄᴇѕ'
+    BOOK: '&#444444ʙᴏᴏᴋ ᴘʀɪᴄᴇѕ'
+    BREWING_STAND: '&#444444ᴘᴏᴛɪᴏɴ ᴘʀɪᴄᴇѕ'
+    BRICK: '&#444444ʙʟᴏᴄᴋ ᴘʀɪᴄᴇѕ'
+
   previous-page-slot: 48
-  next-page-slot: 50
   previous-page:
     material: ARROW
-    displayname: '&aPrevious'
-    lore: []
+    displayname: '&#34ee80ᴘʀᴇᴠɪᴏᴜѕ'
+    lore:
+      - '&fPrevious Page'
+
+  next-page-slot: 50
   next-page:
     material: ARROW
-    displayname: '&aNext'
-    lore: []
+    displayname: '&#34ee80ɴᴇхᴛ'
+    lore:
+      - '&fNext Page'
+
   back-button:
     slot: 45
-    material: BARRIER
-    displayname: '&cBack'
-    lore: []
-  item:
-    displayname: '%item%'
-    lore:
-      - '&7Value: &b$%item-value%'
-
-# Progress / multiplier GUI
-progress-menu:
-  title: '%item% Progress'
-  rows: 3
-  loading-color: '&#20f706'
-  complete-loading-color: '&#20f706'
-  bar-length: 10
-  bar-symbol: '━'
-  incomplete:
     material: RED_STAINED_GLASS_PANE
-    displayname: '&cIncomplete'
+    displayname: '&#ee300aʙᴀᴄᴋ'
     lore:
-      - '&7Progress: &f%progress%%'
-      - '&7Needed: &f%amount-needed%'
-      - '%loading-bar%'
-      - '&7Multiplier: &ax%multi%'
+      - '&fClick to return'
+
+  item:
+    displayname: '&r%item%'
+    lore:
+      - '&fPrice: &#20f706$%item-value%'
+
+progress-menu:
+  rows: 6
+  loading-color: '&#eee70a'
+  complete-loading-color: '&#20f706'
+  bar-length: 20
+  bar-symbol: '&m '
+  titles:
+    crops: '&#444444ᴄʀᴏᴘѕ ᴘʀᴏɢʀᴇѕѕ'
+    bone: '&#444444ᴍᴏʙ ᴅʀᴏᴘѕ ᴘʀᴏɢʀᴇѕѕ'
+    diamond: '&#444444ᴏʀᴇѕ ᴘʀᴏɢʀᴇѕѕ'
+    oak_leaves: '&#444444ɴᴀᴛᴜʀᴀʟ ɪᴛᴇᴍѕ ᴘʀᴏɢʀᴇѕѕ'
+    netherite_helmet: '&#444444ᴀʀᴍᴏʀ ᴀɴᴅ ᴛᴏᴏʟѕ ᴘʀᴏɢʀᴇѕѕ'
+    tropical_fish: '&#444444ꜰɪѕʜ ᴘʀᴏɢʀᴇѕѕ'
+    book: '&#444444ᴇɴᴄʜᴀɴᴛᴇᴅ ʙᴏᴏᴋѕ ᴘʀᴏɢʀᴇѕѕ'
+    brewing_stand: '&#444444ᴘᴏᴛɪᴏɴѕ ᴘʀᴏɢʀᴇѕѕ'
+    brick: '&#444444ʙʟᴏᴄᴋ ᴘʀᴏɢʀᴇѕѕ'
+
+  filler:
+    enabled: true
+    material: GRAY_STAINED_GLASS_PANE
+    displayname: '&7 '
+    lore: []
+
+  incomplete:
+    material: WHITE_STAINED_GLASS_PANE
+    displayname: '&fɪɴᴄᴏᴍᴘʟᴇᴛᴇ'
+    lore:
+      - '&f%loading-bar%&r &f%multi%× %progress%%'
+      - '&7$%amount-needed%'
+
   working:
     material: YELLOW_STAINED_GLASS_PANE
-    displayname: '&eIn Progress'
+    displayname: '&#eee70aᴡᴏʀᴋɪɴɢ'
     lore:
-      - '&7Progress: &f%progress%%'
-      - '&7Needed: &f%amount-needed%'
-      - '%loading-bar%'
-      - '&7Multiplier: &ax%multi%'
+      - '&#eee70a%loading-bar%&r &f%multi%× %progress%%'
+      - '&7$%amount-needed%'
+
   complete:
     material: LIME_STAINED_GLASS_PANE
-    displayname: '&aComplete'
+    displayname: '&#20f706ᴄᴏᴍᴘʟᴇᴛᴇ'
     lore:
-      - '&7Progress: &f100%'
-      - '&7Needed: &f%amount-needed%'
-      - '%loading-bar%'
-      - '&7Multiplier: &ax%multi%'
-  filler:
-    enabled: false
-    material: BLACK_STAINED_GLASS_PANE
-    displayname: ' '
-    lore: []
+      - '&#20f706%loading-bar%&r &#20f706%multi%× %progress%%'
+      - '&7$%amount-needed%'
+
   back-button:
-    enabled: false
-    slot: -1
-    material: BARRIER
-    displayname: '&cBack'
-    lore: []
-  levels:
-    level1:
-      amountNeeded: 10000
-      multi: 1.25
-      slot: 10
-    level2:
-      amountNeeded: 50000
-      multi: 1.5
-      slot: 12
-    level3:
-      amountNeeded: 200000
-      multi: 2.0
-      slot: 14
+    enabled: true
+    slot: 45
+    material: RED_STAINED_GLASS_PANE
+    displayname: '&#ee300aʙᴀᴄᴋ'
+    lore:
+      - '&fClick to return'
+
   categories:
-    ores:
+    crops:
+      icon:
+        material: WHEAT
+        slot: 1
+        displayname: '&#34ee80ᴄʀᴏᴘѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    diamond:
       icon:
         material: DIAMOND
-        slot: 4
-        displayname: '&#f0c040%item% &7(%sold% sold)'
+        slot: 1
+        displayname: '&#34ee80ᴏʀᴇѕ'
         lore:
-          - '&7Total sold: &b$%sold%'
-    mob_drops:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    brick:
+      icon:
+        material: BRICK
+        slot: 1
+        displayname: '&#34ee80ʙʟᴏᴄᴋѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    oak_leaves:
+      icon:
+        material: OAK_LEAVES
+        slot: 1
+        displayname: '&#34ee80ɴᴀᴛᴜʀᴀʟ ɪᴛᴇᴍѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    book:
+      icon:
+        material: BOOK
+        slot: 1
+        displayname: '&#34ee80ᴇɴᴄʜᴀɴᴛᴇᴅ ʙᴏᴏᴋѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    netherite_helmet:
+      icon:
+        material: NETHERITE_HELMET
+        slot: 1
+        displayname: '&#34ee80ᴀʀᴍᴏʀ ᴀɴᴅ ᴛᴏᴏʟѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    bone:
       icon:
         material: BONE
-        slot: 4
-        displayname: '&#e07060%item% &7(%sold% sold)'
+        slot: 1
+        displayname: '&#34ee80ᴍᴏʙ ᴅʀᴏᴘѕ'
         lore:
-          - '&7Total sold: &b$%sold%'
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    brewing_stand:
+      icon:
+        material: BREWING_STAND
+        slot: 1
+        displayname: '&#34ee80ᴘᴏᴛɪᴏɴѕ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
+    tropical_fish:
+      icon:
+        material: TROPICAL_FISH
+        slot: 1
+        displayname: '&#34ee80ꜰɪѕʜ'
+        lore:
+          - '&7Sell items to upgrade'
+          - '&7your sell multiplier!'
+          - ''
+          - '&fView your progress below'
 
-# Sell history GUI
+  levels:
+    level1:
+      amountNeeded: 25000
+      multi: 1.1
+      slot: 10
+    level2:
+      amountNeeded: 150000
+      multi: 1.2
+      slot: 19
+    level3:
+      amountNeeded: 500000
+      multi: 1.3
+      slot: 28
+    level4:
+      amountNeeded: 1000000
+      multi: 1.4
+      slot: 37
+    level5:
+      amountNeeded: 5000000
+      multi: 1.5
+      slot: 38
+    level6:
+      amountNeeded: 25000000
+      multi: 1.6
+      slot: 39
+    level7:
+      amountNeeded: 250000000
+      multi: 1.7
+      slot: 30
+    level8:
+      amountNeeded: 550000000
+      multi: 1.8
+      slot: 21
+    level9:
+      amountNeeded: 850000000
+      multi: 1.9
+      slot: 12
+    level10:
+      amountNeeded: 1000000000
+      multi: 2
+      slot: 13
+    level11:
+      amountNeeded: 2000000000
+      multi: 2.1
+      slot: 14
+    level12:
+      amountNeeded: 4000000000
+      multi: 2.2
+      slot: 23
+    level13:
+      amountNeeded: 8000000000
+      multi: 2.3
+      slot: 32
+    level14:
+      amountNeeded: 10000000000
+      multi: 2.4
+      slot: 41
+    level15:
+      amountNeeded: 20000000000
+      multi: 2.5
+      slot: 42
+    level16:
+      amountNeeded: 40000000000
+      multi: 2.6
+      slot: 43
+    level17:
+      amountNeeded: 80000000000
+      multi: 2.7
+      slot: 34
+    level18:
+      amountNeeded: 160000000000
+      multi: 2.8
+      slot: 25
+    level19:
+      amountNeeded: 320000000000
+      multi: 2.9
+      slot: 16
+    level20:
+      amountNeeded: 640000000000
+      multi: 3
+      slot: 7
+
 sellhistory-menu:
+  title: '&#444444Sell history (Page %history-page%)'
   rows: 6
-  title: '&8Sell History (Page %history-page%)'
   sold-items:
-    displayname: '&f%Item-Name%'
+    displayname: '&r%Item-Name%'
     lore:
-      - '&7Amount sold: &b%amount-sold%'
-      - '&7Revenue: &b$%price-sold%'
+      - '&fTotal amount: &#34ee80%amount-sold%'
+      - '&fTotal price: &#34ee80%price-sold%'
   history-back:
     slot: 45
+    displayname: '&#34ee80ʙᴀᴄᴋ'
     material: ARROW
-    displayname: '&fBack'
-    lore: []
+    lore:
+      - '&fClick to go back'
   history-next:
     slot: 53
+    displayname: '&#34ee80ɴᴇхᴛ'
     material: ARROW
-    displayname: '&fNext'
-    lore: []
+    lore:
+      - '&fClick to go forward'
   history-sort:
-    slot: 50
     material: HOPPER
-    displayname: '&aSort'
+    slot: 50
+    displayname: '&#34ee80ѕᴏʀᴛ'
     NotCurrentColor: '&f'
-    CurrentColor: '&a'
+    CurrentColor: '&#34ee80'
     lore:
-      - Highest Revenue
-      - Lowest Revenue
-      - Name
+      - '• Highest Price'
+      - '• Lowest Price'
+      - '• Name'
   history-refresh:
-    slot: 49
     material: ANVIL
-    displayname: '&aRefresh'
-    lore: []
-  history-player:
-    slot: 48
-    material: PLAYER_HEAD
-    displayname: '%player%'
+    slot: 49
+    displayname: '&#34ee80ʀᴇꜰʀᴇѕʜ'
     lore:
-      - '&7Your sell history'
+      - '&fClick to refresh'
+  history-player:
+    material: PLAYER_HEAD
+    slot: 48
+    displayname: '&#34ee80%player%'
+    lore:
+      - '&fTotal sold: &#34ee80%sell_totalsold%'
 
-# Item prices browser (opened via /donutsell prices)
 item-prices-menu:
-  title: '&8Item Prices (Page %page%)'
+  title: '&#444444Item Prices (Page %page%)'
   rows: 6
+
   previous:
     previous-page-material: ARROW
     previous-page-slot: 45
-    previous-page-displayname: '&aPrevious'
-    previous-page-lore: []
+    previous-page-displayname: '&#34ee80ʙᴀᴄᴋ'
+    previous-page-lore:
+      - '&fClick to go back'
+
   next:
     next-page-material: ARROW
     next-page-slot: 53
-    next-page-displayname: '&aNext'
-    next-page-lore: []
+    next-page-displayname: '&#34ee80ɴᴇхᴛ'
+    next-page-lore:
+      - '&fClick to go forward'
+
+  filter:
+    material: CAULDRON
+    slot: 48
+    displayname: '&#34ee80ꜰɪʟᴛᴇʀ'
+    NotCurrentColor: '&f'
+    CurrentColor: '&#34ee80'
+    lore:
+      - all
+      - crops
+      - bone
+      - diamond
+      - oak_leaves
+      - netherite_helmet
+      - tropical_fish
+      - book
+      - brewing_stand
+      - brick
+
   refresh:
     material: ANVIL
     slot: 49
-    displayname: '&aRefresh'
-    lore: []
+    displayname: '&#34ee80ʀᴇꜰʀᴇѕʜ'
+    lore:
+      - '&fClick to refresh'
+
   sort:
     material: HOPPER
     slot: 50
-    displayname: '&aSort'
+    displayname: '&#34ee80ѕᴏʀᴛ'
     NotCurrentColor: '&f'
-    CurrentColor: '&a'
+    CurrentColor: '&#34ee80'
     lore:
-      - High to Low
-      - Low to High
-      - A to Z
-      - Z to A
-      - No Listed Price
-  filter:
-    material: CHEST
-    slot: 48
-    displayname: '&aFilter'
-    NotCurrentColor: '&f'
-    CurrentColor: '&a'
-    lore:
-      - all
-      - ores
-      - mob_drops
-      - natural_items
+      - Highest Price
+      - Lowest Price
+      - A-Z
+      - Z-A
+
   items:
-    displayname: '&f%item%'
+    displayname: '&r%ItemName%'
     lore:
-      - '&7Value: &b$%item-value%'
+      - '&fPrice: &#34ee80$%amount%'

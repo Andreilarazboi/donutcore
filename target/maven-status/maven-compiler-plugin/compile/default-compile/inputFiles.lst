@@ -85,6 +85,15 @@ C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donut
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\crates\opening\OpeningAnimationType.java
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\crates\Utils.java
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\DonutCore.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\ClearEnderChestCommand.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\DonutEnderChest.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestCommand.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestDataManager.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestHolder.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestInventoryListener.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestListener.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestManager.java
+C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\enderchest\EnderChestModule.java
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\sell\AdminPriceEditorMenu.java
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\sell\CategoryGui.java
 C:\Users\drake\Documents\Plugins\donutcore\src\main\java\ro\andreilarazboi\donutcore\sell\ChatInputListener.java

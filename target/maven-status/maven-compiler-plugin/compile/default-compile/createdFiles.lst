@@ -11,6 +11,7 @@ ro\andreilarazboi\donutcore\crates\listener\RootEditorGuiListener.class
 ro\andreilarazboi\donutcore\crates\ChatInputListener.class
 ro\andreilarazboi\donutcore\crates\DonutCrates$1.class
 ro\andreilarazboi\donutcore\sell\DonutSell$SellNotifyMode.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestHolder.class
 ro\andreilarazboi\donutcore\crates\listener\ConfirmGuiListener.class
 ro\andreilarazboi\donutcore\sell\SellPacketListener$1.class
 ro\andreilarazboi\donutcore\sell\WorthCommand.class
@@ -39,6 +40,7 @@ ro\andreilarazboi\donutcore\crates\gui\KeyListGUI.class
 ro\andreilarazboi\donutcore\crates\ChatInputListener$3.class
 ro\andreilarazboi\donutcore\crates\EditorHolder.class
 ro\andreilarazboi\donutcore\crates\gui\ItemEditorGUI.class
+ro\andreilarazboi\donutcore\enderchest\ClearEnderChestCommand.class
 ro\andreilarazboi\donutcore\sell\ToggleWorthCommand.class
 ro\andreilarazboi\donutcore\crates\opening\anim\OpeningAnimationRegistry.class
 ro\andreilarazboi\donutcore\crates\gui\HologramBackgroundGUI.class
@@ -52,8 +54,10 @@ ro\andreilarazboi\donutcore\crates\gui\RootEditorGUI.class
 ro\andreilarazboi\donutcore\crates\BlockListener$PendingOpen.class
 ro\andreilarazboi\donutcore\crates\gui\CrateEditorGUI.class
 ro\andreilarazboi\donutcore\crates\gui\CrateDisplayNameGUI.class
+ro\andreilarazboi\donutcore\enderchest\DonutEnderChest.class
 ro\andreilarazboi\donutcore\crates\listener\OpeningAnimationGuiListener.class
 ro\andreilarazboi\donutcore\sell\ViewTracker$SortOrder.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestInventoryListener.class
 ro\andreilarazboi\donutcore\crates\opening\anim\OpeningAnimation.class
 ro\andreilarazboi\donutcore\sell\WorthListener.class
 ro\andreilarazboi\donutcore\sell\SellCommand.class
@@ -88,6 +92,7 @@ ro\andreilarazboi\donutcore\crates\listener\CrateDisplayNameGuiListener.class
 ro\andreilarazboi\donutcore\crates\opening\anim\impl\SpiralEliminationAnimation.class
 ro\andreilarazboi\donutcore\crates\ChatInputListener$7.class
 ro\andreilarazboi\donutcore\crates\gui\CrateNameColorGUI$ColorOpt.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestListener.class
 ro\andreilarazboi\donutcore\crates\listener\CreateModeGuiListener.class
 ro\andreilarazboi\donutcore\sell\DonutSell.class
 ro\andreilarazboi\donutcore\crates\gui\ConfirmGUI.class
@@ -110,6 +115,7 @@ ro\andreilarazboi\donutcore\crates\InventoryCloseListener.class
 ro\andreilarazboi\donutcore\sell\HistoryTracker.class
 ro\andreilarazboi\donutcore\crates\opening\anim\impl\FlickerLockAnimation.class
 ro\andreilarazboi\donutcore\sell\DonutSell$Stats.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestInventoryListener$1.class
 ro\andreilarazboi\donutcore\crates\gui\KeySelectGUI.class
 ro\andreilarazboi\donutcore\crates\ChatInputListener$5.class
 ro\andreilarazboi\donutcore\crates\gui\CrateRewardsGUI.class
@@ -137,11 +143,15 @@ ro\andreilarazboi\donutcore\crates\listener\KeySelectGuiListener.class
 ro\andreilarazboi\donutcore\crates\gui\HologramBackgroundGUI$BgOption.class
 ro\andreilarazboi\donutcore\crates\ChatInputListener$4.class
 ro\andreilarazboi\donutcore\DonutCore.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestModule.class
 ro\andreilarazboi\donutcore\sell\AdminPriceEditorMenu$SortMode.class
 ro\andreilarazboi\donutcore\sell\SellMenuClickListener.class
 ro\andreilarazboi\donutcore\crates\listener\CrateRewardsGuiListener.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestDataManager.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestManager.class
 ro\andreilarazboi\donutcore\crates\listener\InventoryProtectionListener.class
 ro\andreilarazboi\donutcore\crates\gui\CrateNameColorGUI.class
+ro\andreilarazboi\donutcore\enderchest\EnderChestCommand.class
 ro\andreilarazboi\donutcore\crates\CrateManager.class
 ro\andreilarazboi\donutcore\sell\ProgressGui$CategoryIcon.class
 ro\andreilarazboi\donutcore\sell\SellHistoryGui.class

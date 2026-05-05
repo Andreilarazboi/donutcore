@@ -708,8 +708,7 @@ public final class DonutSell implements Listener {
         Player p = (Player) event.getPlayer();
         String openTitle = event.getView().getTitle();
         String classicTitle = Utils.formatColors(this.getMenusConfig().getString("sell-menu.title", "&aSell Items"));
-        String newTitle = Utils.formatColors(this.getMenusConfig().getString("new-sell-menu.title", "&aSell Items"));
-        if (openTitle.equals(newTitle) || !openTitle.equals(classicTitle)) return;
+        if (!openTitle.equals(classicTitle)) return;
 
         Inventory inv = event.getInventory();
         boolean useNewFlag = this.getConfig().getBoolean("use-new-sell-menu", false);

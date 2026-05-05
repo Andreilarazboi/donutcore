@@ -29,7 +29,7 @@ public class SellMenuClickListener implements Listener {
         String oldTitle = Utils.formatColors(this.plugin.getMenusConfig().getString("sell-menu.title", ""));
         String newTitle = Utils.formatColors(this.plugin.getMenusConfig().getString("new-sell-menu.title", ""));
         boolean isOld = title.equals(oldTitle);
-        boolean isNew = title.equals(newTitle);
+        boolean isNew = this.useNew && title.equals(newTitle);
         if (!isOld && !isNew) return;
         Inventory top = e.getInventory();
         int topSize = top.getSize();
@@ -69,6 +69,11 @@ public class SellMenuClickListener implements Listener {
             return;
         }
         if (isOld && this.useNew) return;
+        InventoryAction a = e.getAction();
+        if (a == InventoryAction.COLLECT_TO_CURSOR || a == InventoryAction.HOTBAR_SWAP) {
+            e.setCancelled(true);
+            return;
+        }
         int bottomStart = topSize - 9;
         if (slot < 0 || slot < bottomStart || slot >= bottomStart + 9) return;
         e.setCancelled(true);
@@ -87,7 +92,7 @@ public class SellMenuClickListener implements Listener {
         String oldTitle = Utils.formatColors(this.plugin.getMenusConfig().getString("sell-menu.title", ""));
         String newTitle = Utils.formatColors(this.plugin.getMenusConfig().getString("new-sell-menu.title", ""));
         boolean isOld = title.equals(oldTitle);
-        boolean isNew = title.equals(newTitle);
+        boolean isNew = this.useNew && title.equals(newTitle);
         if (!isOld && !isNew) return;
         Inventory top = e.getInventory();
         int topSize = top.getSize();
